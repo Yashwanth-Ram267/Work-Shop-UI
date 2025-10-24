@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circuitech Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      margin: 0;
+      color: #0284c7;
+      font-size: 1.8rem;
+    }
+
+    .username {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #0f172a;
+    }
+
+    .logout-btn {
+      margin-top: 1rem;
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .logout-btn:hover {
+      background-color: #dc2626;
+    }
+
+    .charts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .chart-card {
+      background: white;
+      border-radius: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .chart-card p {
+      font-weight: 600;
+      color: #0284c7;
+      margin: 0.5rem 0 0 0;
+    }
+
+    iframe {
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Circuitech Dashboard</h1>
+    <div class="username" id="profileName"></div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>Ultrasonic</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>DHT11</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/7?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>Load Cell</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>MPU6050 X-Axis</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>MPU6050 Y-Axis</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>MPU6050 Z-Axis</p>
+    </div>
+
+    <div class="chart-card">
+      <iframe width="450" height="260" src="https://thingspeak.com/channels/3130605/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      <p>MPU6050 Gyro Combined</p>
+    </div>
+  </div>
+
+  <script>
+    // Restrict access if not logged in
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "index.html";
+    }
+
+    // Show username
+    const username = "circuitechgroup21";
+    document.getElementById("profileName").textContent = "Logged in as: " + username;
+
+    // Logout
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
